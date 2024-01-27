@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from "react-native";
+import ScreenView from "../layout/ScreenView";
 
 const JourneyScreen = () => {
   // Initialisations --------------------------
@@ -6,12 +7,12 @@ const JourneyScreen = () => {
   // Handlers ---------------------------------
   // View -------------------------------------
   return (
-    <View>
+    <ScreenView>
       <Text>Journey Screen</Text>
-    </View>
+    </ScreenView>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
-export default JourneyScreen; 
+export default JourneyScreen;
