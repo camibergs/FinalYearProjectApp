@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from "react-native";
+import ScreenView from "../layout/ScreenView";
 
 const ProfileScreen = () => {
   // Initialisations --------------------------
@@ -6,12 +7,12 @@ const ProfileScreen = () => {
   // Handlers ---------------------------------
   // View -------------------------------------
   return (
-    <View>
+    <ScreenView>
       <Text>Profile Screen</Text>
-    </View>
+    </ScreenView>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
-export default ProfileScreen; 
+export default ProfileScreen;

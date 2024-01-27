@@ -1,4 +1,5 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from "react-native";
+import ScreenView from "../layout/ScreenView";
 
 const CallSupportScreen = () => {
   // Initialisations --------------------------
@@ -6,12 +7,12 @@ const CallSupportScreen = () => {
   // Handlers ---------------------------------
   // View -------------------------------------
   return (
-    <View>
+    <ScreenView>
       <Text>Call Support Screen</Text>
-    </View>
+    </ScreenView>
   );
-}
+};
 
 const styles = StyleSheet.create({});
 
-export default CallSupportScreen; 
+export default CallSupportScreen;
