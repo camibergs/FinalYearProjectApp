@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
-import JourneyScreen from "../screens/JourneyScreen";
-import CallSupportScreen from "../screens/CallSupportScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import HomeScreen from "../mainscreens/HomeScreen";
+import JourneyScreen from "../mainscreens/JourneyScreen";
+import CallSupportScreen from "../mainscreens/CallSupportScreen";
+import ProfileScreen from "../mainscreens/ProfileScreen";
 import Icons from "../UI/Icons";
 
 const Tab = createBottomTabNavigator();

@@ -3,11 +3,12 @@ import { Button, ButtonTray } from "../UI/Button";
 import Icons from "../UI/Icons";
 import ScreenView from "../layout/ScreenView";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   // Initialisations --------------------------
+  console.log(navigation);
   // State ------------------------------------
   // Handlers ---------------------------------
-  //const gotoSendRequestScreen = () => navigation.navigate("ModuleAddScreen", { onAdd });
+  const gotoSendRequestScreen = () => navigation.navigate("SendRequestScreen");
 
   // View -------------------------------------
   return (
@@ -21,7 +22,7 @@ const HomeScreen = () => {
             label="Send Request"
             icon={<Icons.Form color="white" />}
             style={styles.buttonRequests}
-            //onClick={gotoSendRequestScreen}
+            onClick={gotoSendRequestScreen}
           />
           <Button
             label="Live Chat"
