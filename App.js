@@ -1,17 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
+import NavigationBottom from './src/components/navigation/NavigationBottom';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  
+
   return (
-    <View style={styles.container}>
-
-      <Text>Hello</Text>
-      <Text>Let's start building this app</Text>
-      <Text>We got this</Text>
-      <Text>Manifesting First Class!</Text>
-      <StatusBar style="auto" />
-
-    </View>
+    <NavigationContainer>
+     <NavigationBottom />
+    </NavigationContainer>
   );
 }
 
