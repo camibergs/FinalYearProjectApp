@@ -11,7 +11,6 @@ const SendRequestScreen = ({ navigation, route }) => {
   // View -------------------------------------
   return (
     <ScreenView>
-      <Text>Send request</Text>
       <ButtonTray>
         <Button label="Submit" icon={<Icons.Add />} />
         <Button label="Cancel" onClick={handleCancel} />
