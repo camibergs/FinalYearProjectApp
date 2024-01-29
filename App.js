@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
 import SendRequestScreen from "./src/components/screens/SendRequestScreen";
 import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
+import SplashScreen from "./src/components/mainscreens/SplashScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="HomeScreen"
           component={NavigationBottom}

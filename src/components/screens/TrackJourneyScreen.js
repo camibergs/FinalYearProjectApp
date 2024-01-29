@@ -60,6 +60,10 @@ export default function TrackJourneyScreen() {
 
         <Circle center={pin} radius={100} />
       </MapView>
+
+      <View>
+        <Text>Track</Text>
+      </View>
     </View>
   );
 }
@@ -70,6 +74,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "100%",
+    height: "60%",
   },
 });
