@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
 import SendRequestScreen from "./src/components/screens/SendRequestScreen";
+import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,16 @@ export default function App() {
           name="SendRequestScreen"
           component={SendRequestScreen}
           options={{ title: "Send Request" }}
+        />
+        <Stack.Screen
+          name="JourneyScreen"
+          component={NavigationBottom}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TrackJourneyScreen"
+          component={TrackJourneyScreen}
+          options={{ title: "Track Journey" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
