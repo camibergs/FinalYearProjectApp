@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../mainscreens/HomeScreen";
 import JourneyScreen from "../mainscreens/JourneyScreen";
@@ -32,6 +32,7 @@ const NavigationBottom = () => {
         name="Home"
         component={HomeScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View
               style={{

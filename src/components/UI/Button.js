@@ -1,4 +1,10 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export const Button = ({ label, icon, onClick, styleLabel, styleButton }) => {
   // Initialisations ------------------
@@ -6,12 +12,12 @@ export const Button = ({ label, icon, onClick, styleLabel, styleButton }) => {
   // Handlers -------------------------
   // View -----------------------------
   return (
-    <Pressable onPress={onClick} style={[styles.button, styleButton]}>
+    <TouchableOpacity onPress={onClick} style={[styles.button, styleButton]}>
       <View style={styles.buttonContent}>
         {icon ? icon : null}
         <Text style={[styles.label, styleLabel]}>{label}</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
@@ -29,10 +35,9 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   button: {
-    minHeight: 50,
-    borderRadius: 8,
-    borderColor: "#60A5E5",
-    backgroundColor: "#60A5E5",
+    height: 150,
+    borderRadius: 15,
+    backgroundColor: "#C0E1EC",
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
