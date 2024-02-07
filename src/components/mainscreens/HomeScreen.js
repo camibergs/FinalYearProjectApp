@@ -20,6 +20,7 @@ const HomeScreen = ({ navigation }) => {
           style={styles.airport}
         />
         <Text style={styles.text}>Request Special Assistance</Text>
+
         <ButtonTray>
           <View style={styles.buttonContainer}>
             <TouchableOpacity
@@ -35,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
               //onClick={gotoLiveChatScreen}
             >
               <Icons.LiveChat color="#24325B" />
-              <Text style={styles.label}>Live Chat</Text>
+              <Text style={styles.label}>Live Chat Request</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -43,12 +44,10 @@ const HomeScreen = ({ navigation }) => {
               //onClick={gotoCallScreen}
             >
               <Icons.Call color="#24325B" />
-              <Text style={styles.label}>Call</Text>
+              <Text style={styles.label}>Call Request</Text>
             </TouchableOpacity>
           </View>
         </ButtonTray>
-
-        {/*<Text style={styles.text}>Your requests</Text>*/}
       </View>
     </ScreenView>
   );
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   label: {
-    marginTop: 50,
+    marginTop: 20,
     fontSize: 18,
     textAlign: "center",
     flexDirection: "column",

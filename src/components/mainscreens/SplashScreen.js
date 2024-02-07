@@ -3,6 +3,7 @@ import { TouchableOpacity, StyleSheet, View, Text, Image } from "react-native";
 const SplashScreen = ({ navigation }) => {
   // Initialisations --------------------------
   console.log(navigation);
+
   // State ------------------------------------
   // Handlers ---------------------------------
   const gotoHomeScreen = () => navigation.navigate("HomeScreen");

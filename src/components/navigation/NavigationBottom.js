@@ -41,7 +41,7 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.Home color={focused ? "blue" : "grey"} />
+              <Icons.Home />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
@@ -61,7 +61,7 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.Plane color={focused ? "blue" : "grey"} />
+              <Icons.Plane color={focused ? "grey" : "blue"} />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
