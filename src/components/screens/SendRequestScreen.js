@@ -1,10 +1,16 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useState } from "react";
 import { Button, ButtonTray } from "../UI/Button.js";
 import Icons from "../UI/Icons";
 import ScreenView from "../layout/ScreenView";
 
-const defaultRequestForm = {
+const defaultFlightForm = {
   FlightID: null,
   FlightNumber: null,
   AirlineRefNumber: null,
@@ -13,18 +19,18 @@ const defaultRequestForm = {
 
 const SendRequestScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
-
-  defaultRequestForm.FlightID = Math.floor(100000 + Math.random() * 900000);
+  const { onAdd } = route.params;
+  defaultFlightForm.FlightID = Math.floor(100000 + Math.random() * 900000);
 
   // State ------------------------------------
-  const [flight, setFlight] = useState(defaultRequestForm);
+  const [flights, setFlights] = useState(defaultFlightForm);
   // Handlers ---------------------------------
   const handleCancel = () => navigation.goBack();
 
-  const handleAdd = () => onAdd(flight);
+  const handleAdd = () => onAdd(flights);
 
   const handleChange = (field, value) =>
-    setFlight({ ...flight, [field]: value });
+    setFlights({ ...flights, [field]: value });
   // View -------------------------------------
   return (
     <View style={styles.container}>
@@ -32,7 +38,8 @@ const SendRequestScreen = ({ navigation, route }) => {
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Number</Text>
         <TextInput
-          value={module.FlightNumber}
+          value={flights.FlightNumber}
+          placeholder="E.g. BA 1234"
           onChangeText={(value) => handleChange("FlightNumber", value)}
           style={styles.itemTextInput}
         />
@@ -41,7 +48,8 @@ const SendRequestScreen = ({ navigation, route }) => {
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Airline Reference Number</Text>
         <TextInput
-          value={flight.AirlineRefNumber}
+          value={flights.AirlineRefNumber}
+          placeholder="E.g. 9876543"
           onChangeText={(value) => handleChange("AirlineRefNumber", value)}
           style={styles.itemTextInput}
         />
@@ -50,16 +58,34 @@ const SendRequestScreen = ({ navigation, route }) => {
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Departure Date</Text>
         <TextInput
-          value={flight.FlightDeparture}
+          value={flights.FlightDeparture}
+          placeholder="Select Date"
           onChangeText={(value) => handleChange("FlightDeparture", value)}
           style={styles.itemTextInput}
         />
       </View>
 
-      <ButtonTray>
-        <Button label="Submit" />
-        <Button label="Cancel" onClick={handleCancel} />
-      </ButtonTray>
+      <Text>
+        {flights.FlightNumber} {flights.AirlineRefNumber}
+      </Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.cancelButton}
+          label="Cancel"
+          onPress={handleCancel}
+        >
+          <Text>Cancel</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.nextButton}
+          label="Next"
+          onPress={handleAdd}
+        >
+          <Text>Next</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -83,6 +109,35 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 1,
     borderColor: "lightgray",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    marginTop: 20,
+    gap: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cancelButton: {
+    flex: 1,
+    flexDirection: "row",
+    minHeight: 50,
+    borderWidth: 1,
+    borderRadius: 7,
+    borderColor: "grey",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  nextButton: {
+    flex: 1,
+    flexDirection: "row",
+    minHeight: 50,
+    borderWidth: 1,
+    borderRadius: 7,
+    borderColor: "grey",
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
