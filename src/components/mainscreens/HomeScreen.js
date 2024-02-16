@@ -1,15 +1,33 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import { Button, ButtonTray } from "../UI/Button";
 import Icons from "../UI/Icons";
 import ScreenView from "../layout/ScreenView";
+import initialFlights from "../../data/flights.js";
 
 const HomeScreen = ({ navigation }) => {
   // Initialisations --------------------------
   console.log(navigation);
   // State ------------------------------------
+  const [flights, setFlights] = useState(initialFlights);
   // Handlers ---------------------------------
-  const gotoSendRequestScreen = () => navigation.navigate("SendRequestScreen");
+  const gotoSendRequestScreen = () =>
+    navigation.navigate("SendRequestScreen", { onAdd: onAdd });
 
+  const handleSelect = () => alert("Item Selected");
+  const handleAdd = (flight) => setFlights([...flights, flight]);
+
+  const onAdd = (flight) => {
+    setFlights([...flights, flight]);
+  };
   // View -------------------------------------
   return (
     <ScreenView>
@@ -49,6 +67,23 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </ButtonTray>
       </View>
+
+      <Text style={styles.text}>Your requests</Text>
+
+      <ScrollView style={styles.container}>
+        {flights.map((flight) => {
+          return (
+            <Pressable key={flight.FlightID} onPress={handleSelect}>
+              <View style={styles.item}>
+                <Text style={styles.text}>
+                  {flight.FlightDeparture} {flight.FlightNumber}{" "}
+                  {flight.AirlineRefNumber}{" "}
+                </Text>
+              </View>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
     </ScreenView>
   );
 };
@@ -105,6 +140,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: "#24325B",
     fontWeight: "bold",
+  },
+  item: {
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderColor: "lightgray",
   },
 });
 

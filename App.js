@@ -35,7 +35,7 @@ export default function App() {
         <Stack.Screen
           name="TrackJourneyScreen"
           component={TrackJourneyScreen}
-          options={{ title: "Track Journey" }}
+          options={{ title: "Journey" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
