@@ -19,8 +19,8 @@ const HomeScreen = ({ navigation }) => {
   // State ------------------------------------
   const [flights, setFlights] = useState(initialFlights);
   // Handlers ---------------------------------
-  const gotoSendRequestScreen = () =>
-    navigation.navigate("SendRequestScreen", { onAdd: onAdd });
+  const gotoSendFormRequest1 = () =>
+    navigation.navigate("SendFormRequest1", { onAdd: onAdd });
 
   const handleSelect = () => alert("Item Selected");
   const handleAdd = (flight) => setFlights([...flights, flight]);
@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.buttonRequests}
-              onPress={gotoSendRequestScreen}
+              onPress={gotoSendFormRequest1}
             >
               <Image
                 source={require("../../../assets/images/SendFormImage.png")}
