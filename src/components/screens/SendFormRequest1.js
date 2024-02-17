@@ -7,8 +7,8 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { Button, ButtonTray } from "../UI/Button.js";
-import Icons from "../UI/Icons";
-import ScreenView from "../layout/ScreenView";
+import Icons from "../UI/Icons.js";
+import ScreenView from "../layout/ScreenView.js";
 
 const defaultFlightForm = {
   FlightID: null,
@@ -17,7 +17,7 @@ const defaultFlightForm = {
   FlightDeparture: null,
 };
 
-const SendRequestScreen = ({ navigation, route }) => {
+const SendFormRequest1 = ({ navigation, route }) => {
   // Initialisations --------------------------
   const { onAdd } = route.params;
   defaultFlightForm.FlightID = Math.floor(100000 + Math.random() * 900000);
@@ -31,6 +31,8 @@ const SendRequestScreen = ({ navigation, route }) => {
 
   const handleChange = (field, value) =>
     setFlights({ ...flights, [field]: value });
+
+  const gotoSendFormRequest2 = () => navigation.navigate("SendFormRequest2");
   // View -------------------------------------
   return (
     <View style={styles.container}>
@@ -72,16 +74,16 @@ const SendRequestScreen = ({ navigation, route }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.cancelButton}
-          label="Cancel"
-          onPress={handleCancel}
+          label="Save"
+          onPress={handleAdd}
         >
-          <Text>Cancel</Text>
+          <Text>Save</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.nextButton}
           label="Next"
-          onPress={handleAdd}
+          onPress={gotoSendFormRequest2}
         >
           <Text>Next</Text>
         </TouchableOpacity>
@@ -141,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SendRequestScreen;
+export default SendFormRequest1;

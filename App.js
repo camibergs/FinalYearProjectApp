@@ -2,9 +2,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
-import SendRequestScreen from "./src/components/screens/SendRequestScreen";
 import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
 import SplashScreen from "./src/components/mainscreens/SplashScreen";
+import SendFormRequest1 from "./src/components/screens/SendFormRequest1";
+import SendFormRequest2 from "./src/components/screens/SendFormRequest2";
+import SendFormRequest3 from "./src/components/screens/SendFormRequest3";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,10 +25,21 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SendRequestScreen"
-          component={SendRequestScreen}
-          options={{ title: "Send Request" }}
+          name="SendFormRequest1"
+          component={SendFormRequest1}
+          options={{ title: "Step 1" }}
         />
+        <Stack.Screen
+          name="SendFormRequest2"
+          component={SendFormRequest2}
+          options={{ title: "Step 2" }}
+        />
+        <Stack.Screen
+          name="SendFormRequest3"
+          component={SendFormRequest3}
+          options={{ title: "Confirmation" }}
+        />
+
         <Stack.Screen
           name="JourneyScreen"
           component={NavigationBottom}
