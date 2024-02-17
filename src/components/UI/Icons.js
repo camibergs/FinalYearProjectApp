@@ -19,15 +19,25 @@ const Call = () => (
 );
 
 //Navigation Bar Icons
-const Home = () => <FontAwesome name="home" size={30} />;
-const Plane = () => <FontAwesome name="plane" size={30} />;
-const CallSupport = () => <Ionicons name="call" size={30} />;
-const Account = () => <MaterialCommunityIcons name="account" size={30} />;
+const Home = ({ color }) => <FontAwesome name="home" size={30} color={color} />;
+const Plane = ({ color }) => (
+  <FontAwesome name="plane" size={30} color={color} />
+);
+const CallSupport = ({ color }) => (
+  <Ionicons name="call" size={30} color={color} />
+);
+const Account = ({ color }) => (
+  <MaterialCommunityIcons name="account" size={30} color={color} />
+);
 
 //Utility Icons
 const Add = () => <MaterialIcons name="add" size={16} />;
 const Delete = () => <MaterialIcons name="delete" size={16} />;
 const Edit = () => <MaterialIcons name="edit" size={16} />;
+
+const RightArrow = () => (
+  <AntDesign name="rightcircle" size={24} color="#24325B" />
+);
 
 // Compose
 Icons.Account = Account;
@@ -40,5 +50,6 @@ Icons.Form = Form;
 Icons.Home = Home;
 Icons.LiveChat = LiveChat;
 Icons.Plane = Plane;
+Icons.RightArrow = RightArrow;
 
 export default Icons;

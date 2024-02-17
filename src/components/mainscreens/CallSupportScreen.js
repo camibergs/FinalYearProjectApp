@@ -7,12 +7,21 @@ const CallSupportScreen = () => {
   // Handlers ---------------------------------
   // View -------------------------------------
   return (
-    <ScreenView>
-      <Text>Call Support Screen</Text>
+    <ScreenView style={styles.container}>
+      <Text style={styles.label}>Call Support Screen</Text>
     </ScreenView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  label: {
+    fontSize: 16,
+  },
+});
 
 export default CallSupportScreen;
