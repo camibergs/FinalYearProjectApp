@@ -31,13 +31,14 @@ const HomeScreen = ({ navigation }) => {
   // View -------------------------------------
   return (
     <ScreenView>
-      <View style={styles.container}>
-        <Text style={styles.introText}>Welcome to Glide</Text>
-        <Image
-          source={require("../../../assets/airport.png")}
-          style={styles.airport}
-        />
-        <Text style={styles.text}>Request Special Assistance</Text>
+      <Image
+        source={require("../../../assets/clouds.png")}
+        style={styles.clouds}
+      />
+      <ScrollView style={styles.container}>
+        <Text style={styles.h1}>Welcome to Glide</Text>
+
+        <Text style={styles.h2}>Request Special Assistance</Text>
 
         <ButtonTray>
           <View style={styles.buttonContainer}>
@@ -45,15 +46,21 @@ const HomeScreen = ({ navigation }) => {
               style={styles.buttonRequests}
               onPress={gotoSendRequestScreen}
             >
-              <Icons.Form color="#24325B" />
-              <Text style={styles.label}>Send Request</Text>
+              <Image
+                source={require("../../../assets/images/SendFormImage.png")}
+                style={styles.imagesRequest}
+              />
+              <Text style={styles.label}>Send Form Request</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.buttonRequests}
               //onClick={gotoLiveChatScreen}
             >
-              <Icons.LiveChat color="#24325B" />
+              <Image
+                source={require("../../../assets//images/LiveChatImage.png")}
+                style={styles.imagesRequest}
+              />
               <Text style={styles.label}>Live Chat Request</Text>
             </TouchableOpacity>
 
@@ -61,28 +68,37 @@ const HomeScreen = ({ navigation }) => {
               style={styles.buttonRequests}
               //onClick={gotoCallScreen}
             >
-              <Icons.Call color="#24325B" />
+              <Image
+                source={require("../../../assets/images/CallRequestImage.png")}
+                style={styles.imagesRequest}
+              />
               <Text style={styles.label}>Call Request</Text>
             </TouchableOpacity>
           </View>
         </ButtonTray>
-      </View>
 
-      <Text style={styles.text}>Your requests</Text>
+        <Text style={styles.h3}>Your requests</Text>
 
-      <ScrollView style={styles.container}>
-        {flights.map((flight) => {
-          return (
-            <Pressable key={flight.FlightID} onPress={handleSelect}>
-              <View style={styles.item}>
-                <Text style={styles.text}>
-                  {flight.FlightDeparture} {flight.FlightNumber}{" "}
-                  {flight.AirlineRefNumber}{" "}
-                </Text>
-              </View>
-            </Pressable>
-          );
-        })}
+        <View>
+          {flights.map((flight) => {
+            return (
+              <Pressable key={flight.FlightID} onPress={handleSelect}>
+                <View style={styles.item}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.textRequestH1}>
+                      Request for the {flight.FlightDeparture}
+                    </Text>
+                    <Text style={styles.textRequestH2}>
+                      Flight Number: {flight.FlightNumber}
+                    </Text>
+                    <Text style={styles.textRequestH2}>Status: Confirmed</Text>
+                  </View>
+                  <Icons.RightArrow />
+                </View>
+              </Pressable>
+            );
+          })}
+        </View>
       </ScrollView>
     </ScreenView>
   );
@@ -102,21 +118,33 @@ const styles = StyleSheet.create({
   infoTray: {
     gap: 5,
   },
-  introText: {
-    paddingBottom: 15,
+  h1: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 5,
+    paddingBottom: 10,
     fontSize: 24,
     fontWeight: "bold",
     color: "#24325B",
   },
-  text: {
+  h2: {
     paddingVertical: 15,
-    fontSize: 20,
+    marginTop: 10,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#24325B",
   },
-  airport: {
-    height: 200,
-    width: 400,
+  h3: {
+    paddingVertical: 15,
+    marginTop: 20,
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#24325B",
+  },
+
+  clouds: {
+    height: 50,
+    width: 450,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -128,23 +156,50 @@ const styles = StyleSheet.create({
     height: 150,
     width: 122,
     borderRadius: 15,
-    backgroundColor: "#C0E1EC",
+    borderColor: "#56A0BB",
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 4,
+    backgroundColor: "#DFEDF2",
     alignItems: "center",
     padding: 10,
   },
+  imagesRequest: {
+    height: 80,
+    width: 80,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   label: {
-    marginTop: 20,
-    fontSize: 18,
+    marginTop: 10,
+    fontSize: 14,
     textAlign: "center",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     color: "#24325B",
-    fontWeight: "bold",
   },
   item: {
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderColor: "lightgray",
+    borderRadius: 15,
+    borderColor: "#56A0BB",
+    backgroundColor: "#DFEDF2",
+    marginBottom: 20,
+    padding: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textContainer: {
+    flex: 1,
+  },
+  textRequestH1: {
+    fontSize: 18,
+    color: "#24325B",
+    fontWeight: "600",
+  },
+  textRequestH2: {
+    fontSize: 16,
+    color: "#24325B",
   },
 });
 

@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const CustomTabLabel = ({ label, focused }) => (
   <View style={{ alignItems: "center", justifyContent: "center", top: 10 }}>
-    <Text style={{ color: focused ? "blue" : "grey" }}>{label}</Text>
+    <Text style={{ color: focused ? "#24325B" : "#BCBCBC" }}>{label}</Text>
   </View>
 );
 
@@ -41,7 +41,7 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.Home />
+              <Icons.Home color={focused ? "#24325B" : "#BCBCBC"} />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
@@ -61,7 +61,7 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.Plane color={focused ? "grey" : "blue"} />
+              <Icons.Plane color={focused ? "#24325B" : "#BCBCBC"} />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
@@ -81,7 +81,7 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.CallSupport color={focused ? "blue" : "grey"} />
+              <Icons.CallSupport color={focused ? "#24325B" : "#BCBCBC"} />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
@@ -90,7 +90,7 @@ const NavigationBottom = () => {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="Profile"
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -101,11 +101,11 @@ const NavigationBottom = () => {
                 top: 10,
               }}
             >
-              <Icons.Account color={focused ? "blue" : "grey"} />
+              <Icons.Account color={focused ? "#24325B" : "#BCBCBC"} />
             </View>
           ),
           tabBarLabel: ({ focused }) => (
-            <CustomTabLabel label="Account" focused={focused} />
+            <CustomTabLabel label="Profile" focused={focused} />
           ),
         }}
       />
