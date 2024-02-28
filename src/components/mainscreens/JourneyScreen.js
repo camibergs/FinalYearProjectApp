@@ -26,9 +26,6 @@ const JourneyScreen = ({ navigation }) => {
     setFlights([...flights, flight]);
   };
 
-  const gotoTrackJourneyScreen = () =>
-    navigation.navigate("TrackJourneyScreen");
-
   const gotoScheduleJourneyScreen = () =>
     navigation.navigate("ScheduleJourneyScreen");
   // View -------------------------------------
@@ -38,6 +35,7 @@ const JourneyScreen = ({ navigation }) => {
         source={require("../../../assets/clouds.png")}
         style={styles.clouds}
       />
+
       <ScrollView style={styles.container}>
         <Text style={styles.h1}>Journeys</Text>
 
@@ -64,14 +62,6 @@ const JourneyScreen = ({ navigation }) => {
             </Pressable>
           );
         })}
-
-        <TouchableOpacity
-          style={styles.startButton}
-          label="Track Journey"
-          onPress={gotoTrackJourneyScreen}
-        >
-          <Text style={styles.textButton}>Start Track Journey</Text>
-        </TouchableOpacity>
       </ScrollView>
     </ScreenView>
   );

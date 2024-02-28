@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
 import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
 import ScheduleJourneyScreen from "./src/components/screens/ScheduleJourneyScreen";
+import DepartureAssistanceScreen from "./src/components/screens/DepartureAssistanceScreen";
 import SplashScreen from "./src/components/mainscreens/SplashScreen";
 import SendFormRequest1 from "./src/components/screens/SendFormRequest1";
 import SendFormRequest2 from "./src/components/screens/SendFormRequest2";
@@ -54,7 +55,12 @@ export default function App() {
         <Stack.Screen
           name="ScheduleJourneyScreen"
           component={ScheduleJourneyScreen}
-          options={{ title: " " }}
+          options={{ title: "Your Journey Schedule" }}
+        />
+        <Stack.Screen
+          name="DepartureAssistanceScreen"
+          component={DepartureAssistanceScreen}
+          options={{ title: "Departure Assistance" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
