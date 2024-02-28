@@ -6,9 +6,6 @@ import {
   View,
 } from "react-native";
 import { useState } from "react";
-import { Button, ButtonTray } from "../UI/Button.js";
-import Icons from "../UI/Icons.js";
-import ScreenView from "../layout/ScreenView.js";
 
 const defaultFlightForm = {
   FlightID: null,
@@ -24,10 +21,14 @@ const SendFormRequest1 = ({ navigation, route }) => {
 
   // State ------------------------------------
   const [flights, setFlights] = useState(defaultFlightForm);
+
   // Handlers ---------------------------------
   const handleCancel = () => navigation.goBack();
 
-  const handleAdd = () => onAdd(flights);
+  const handleAdd = () => {
+    onAdd(flights, setFlights);
+    navigation.navigate("HomeScreen");
+  };
 
   const handleChange = (field, value) =>
     setFlights({ ...flights, [field]: value });

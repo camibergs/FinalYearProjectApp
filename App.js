@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
 import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
+import ScheduleJourneyScreen from "./src/components/screens/ScheduleJourneyScreen";
 import SplashScreen from "./src/components/mainscreens/SplashScreen";
 import SendFormRequest1 from "./src/components/screens/SendFormRequest1";
 import SendFormRequest2 from "./src/components/screens/SendFormRequest2";
@@ -48,7 +49,12 @@ export default function App() {
         <Stack.Screen
           name="TrackJourneyScreen"
           component={TrackJourneyScreen}
-          options={{ title: "Journey" }}
+          options={{ title: "Track Journey" }}
+        />
+        <Stack.Screen
+          name="ScheduleJourneyScreen"
+          component={ScheduleJourneyScreen}
+          options={{ title: " " }}
         />
       </Stack.Navigator>
     </NavigationContainer>

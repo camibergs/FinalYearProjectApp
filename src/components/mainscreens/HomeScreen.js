@@ -16,14 +16,15 @@ import initialFlights from "../../data/flights.js";
 const HomeScreen = ({ navigation }) => {
   // Initialisations --------------------------
   console.log(navigation);
+
   // State ------------------------------------
   const [flights, setFlights] = useState(initialFlights);
+
   // Handlers ---------------------------------
   const gotoSendFormRequest1 = () =>
     navigation.navigate("SendFormRequest1", { onAdd: onAdd });
 
   const handleSelect = () => alert("Item Selected");
-  const handleAdd = (flight) => setFlights([...flights, flight]);
 
   const onAdd = (flight) => {
     setFlights([...flights, flight]);

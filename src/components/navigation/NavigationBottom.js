@@ -53,6 +53,7 @@ const NavigationBottom = () => {
         name="Journey"
         component={JourneyScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View
               style={{

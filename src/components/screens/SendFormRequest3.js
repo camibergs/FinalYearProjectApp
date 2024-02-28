@@ -43,14 +43,6 @@ const SendFormRequest3 = ({ navigation }) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.cancelButton}
-          label="Save"
-          //onPress={handleAdd}
-        >
-          <Text>Save</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
           style={styles.nextButton}
           label="Next"
           //onPress={gotoSendFormRequest3}

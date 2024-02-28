@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MapView, { Marker, Callout, Circle } from "react-native-maps";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import * as Location from "expo-location";
 
 export default function TrackJourneyScreen() {
@@ -34,7 +34,17 @@ export default function TrackJourneyScreen() {
 
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={pin} showsUserLocation={true}>
+      <MapView
+        style={styles.map}
+        //initialRegion={pin}
+        region={{
+          latitude: pin.latitude,
+          longitude: pin.longitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        }}
+        showsUserLocation={true}
+      >
         <Marker
           coordinate={pin}
           title="Test Position Title"
@@ -62,7 +72,13 @@ export default function TrackJourneyScreen() {
       </MapView>
 
       <View>
-        <Text>Track</Text>
+        <TouchableOpacity
+          style={styles.shareButton}
+          label="Track Journey"
+          //onPress={gotoTrackJourneyScreen}
+        >
+          <Text style={styles.textButton}>Share Journey</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -74,6 +90,23 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "60%",
+    height: "85%",
+  },
+  shareButton: {
+    flex: 1,
+    flexDirection: "row",
+    margin: 20,
+    marginTop: 30,
+    minHeight: 50,
+    borderRadius: 7,
+    backgroundColor: "#24325B",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textButton: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white",
   },
 });

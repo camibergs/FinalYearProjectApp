@@ -13,7 +13,7 @@ import TrackJourneyScreen from "../screens/TrackJourneyScreen.js";
 import initialFlights from "../../data/flights.js";
 import ScreenView from "../layout/ScreenView";
 
-const JourneyScreen = ({ navigation }) => {
+const ScheduleJourneyScreen = ({ navigation }) => {
   // Initialisations --------------------------
   // State ------------------------------------
   const [flights, setFlights] = useState(initialFlights);
@@ -28,9 +28,6 @@ const JourneyScreen = ({ navigation }) => {
 
   const gotoTrackJourneyScreen = () =>
     navigation.navigate("TrackJourneyScreen");
-
-  const gotoScheduleJourneyScreen = () =>
-    navigation.navigate("ScheduleJourneyScreen");
   // View -------------------------------------
   return (
     <ScreenView>
@@ -39,9 +36,8 @@ const JourneyScreen = ({ navigation }) => {
         style={styles.clouds}
       />
       <ScrollView style={styles.container}>
-        <Text style={styles.h1}>Journeys</Text>
+        <Text style={styles.h1}>Your Journey Schedule</Text>
 
-        <Text style={styles.h2}>Upcomings</Text>
         {flights.map((flight) => {
           return (
             <Pressable key={flight.FlightID} onPress={handleSelect}>
@@ -53,8 +49,8 @@ const JourneyScreen = ({ navigation }) => {
 
                 <TouchableOpacity
                   style={styles.scheduleButton}
-                  label="Schedule Journey"
-                  onPress={gotoScheduleJourneyScreen}
+                  label="Track Journey"
+                  onPress={gotoTrackJourneyScreen}
                 >
                   <Text style={styles.textScheduleButton}>
                     Journey schedule
@@ -157,4 +153,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default JourneyScreen;
+export default ScheduleJourneyScreen;
