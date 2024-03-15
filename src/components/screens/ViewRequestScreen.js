@@ -8,56 +8,40 @@ import {
 } from "react-native";
 import ScreenView from "../layout/ScreenView";
 
-const ScheduleJourneyScreen = ({ navigation, route }) => {
+const ViewRequestScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
   const flight = route.params.flight;
   // State ------------------------------------
   // Handlers ---------------------------------
-  const gotoTrackJourneyScreen = () =>
-    navigation.navigate("TrackJourneyScreen");
+  const handleSelect = () => alert("Item Selected");
 
-  const gotoDepartureAssistanceScreen = (flight) =>
-    navigation.navigate("DepartureAssistanceScreen", { flight });
+  const gotoScheduleJourneyScreen = (flight) =>
+    navigation.navigate("ScheduleJourneyScreen", { flight });
+
   // View -------------------------------------
   return (
     <ScreenView>
       <ScrollView style={styles.container}>
-        <Pressable key={flight.FlightID}>
+        <Pressable key={flight.FlightID} onPress={handleSelect}>
           <View style={styles.item}>
-            <TouchableOpacity
-              style={styles.scheduleButton}
-              label="Departure Assistance"
-              onPress={() => gotoDepartureAssistanceScreen(flight)}
-            >
-              <Text style={styles.textScheduleButton}>
-                {"Departure Assistance \n Set pick-up point"}
+            <View style={styles.textContainer}>
+              <Text style={styles.textRequestH1}>
+                Request for the {flight.FlightDeparture}
               </Text>
-            </TouchableOpacity>
-            <Text style={styles.text}>{flight.FlightDeparture}</Text>
-            <Text style={styles.text}>
-              Airline reference: {flight.AirlineRefNumber}
-            </Text>
-
-            <Text style={styles.text}>
-              Flight number: {flight.FlightNumber}
-            </Text>
-            <TouchableOpacity
-              style={styles.scheduleButton}
-              label="Arrival Assistance"
-            >
-              <Text style={styles.textScheduleButton}>
-                {"Arrival Assistance \n Set drop-off point"}
+              <Text style={styles.textRequestH2}>
+                Flight Number: {flight.FlightNumber}
               </Text>
-            </TouchableOpacity>
+              <Text style={styles.textRequestH2}>Status: Confirmed</Text>
+            </View>
           </View>
         </Pressable>
 
         <TouchableOpacity
           style={styles.startButton}
-          label="Track Journey"
-          onPress={gotoTrackJourneyScreen}
+          label="View Journey"
+          onPress={() => gotoScheduleJourneyScreen(flight)}
         >
-          <Text style={styles.textButton}>Start Track Journey</Text>
+          <Text style={styles.textButton}>View your journey</Text>
         </TouchableOpacity>
       </ScrollView>
     </ScreenView>
@@ -93,17 +77,17 @@ const styles = StyleSheet.create({
     color: "#24325B",
   },
   item: {
-    padding: 20,
-    //marginVertical: 20,
+    marginVertical: 20,
     borderRadius: 10,
-    backgroundColor: "white",
+    backgroundColor: "#DFEDF2",
+    padding: 20,
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-start",
   },
   text: {
     fontSize: 16,
-    paddingVertical: 10,
+    paddingBottom: 8,
   },
   scheduleButton: {
     flex: 1,
@@ -125,7 +109,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: "#24325B",
-    paddingVertical: 8,
   },
   startButton: {
     flex: 1,
@@ -145,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScheduleJourneyScreen;
+export default ViewRequestScreen;

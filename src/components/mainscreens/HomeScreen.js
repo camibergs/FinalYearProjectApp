@@ -24,6 +24,9 @@ const HomeScreen = ({ navigation }) => {
   const gotoSendFormRequest1 = () =>
     navigation.navigate("SendFormRequest1", { onAdd: onAdd });
 
+  const gotoViewRequestScreen = (flight) =>
+    navigation.navigate("ViewRequestScreen", { flight });
+
   const handleSelect = () => alert("Item Selected");
 
   const onAdd = (flight) => {
@@ -83,7 +86,10 @@ const HomeScreen = ({ navigation }) => {
         <View>
           {flights.map((flight) => {
             return (
-              <Pressable key={flight.FlightID} onPress={handleSelect}>
+              <Pressable
+                key={flight.FlightID}
+                onPress={() => gotoViewRequestScreen(flight)}
+              >
                 <View style={styles.item}>
                   <View style={styles.textContainer}>
                     <Text style={styles.textRequestH1}>
