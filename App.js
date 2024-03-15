@@ -9,6 +9,7 @@ import SplashScreen from "./src/components/mainscreens/SplashScreen";
 import SendFormRequest1 from "./src/components/screens/SendFormRequest1";
 import SendFormRequest2 from "./src/components/screens/SendFormRequest2";
 import SendFormRequest3 from "./src/components/screens/SendFormRequest3";
+import ViewRequestScreen from "./src/components/screens/ViewRequestScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,17 +30,17 @@ export default function App() {
         <Stack.Screen
           name="SendFormRequest1"
           component={SendFormRequest1}
-          options={{ title: "Step 1" }}
+          options={{ title: "Step 1/3" }}
         />
         <Stack.Screen
           name="SendFormRequest2"
           component={SendFormRequest2}
-          options={{ title: "Step 2" }}
+          options={{ title: "Step 2/3" }}
         />
         <Stack.Screen
           name="SendFormRequest3"
           component={SendFormRequest3}
-          options={{ title: "Confirmation" }}
+          options={{ title: "Step 3/3 - Confirmation" }}
         />
 
         <Stack.Screen
@@ -61,6 +62,11 @@ export default function App() {
           name="DepartureAssistanceScreen"
           component={DepartureAssistanceScreen}
           options={{ title: "Departure Assistance" }}
+        />
+        <Stack.Screen
+          name="ViewRequestScreen"
+          component={ViewRequestScreen}
+          options={{ title: "View request" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

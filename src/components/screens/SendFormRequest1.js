@@ -37,7 +37,7 @@ const SendFormRequest1 = ({ navigation, route }) => {
   // View -------------------------------------
   return (
     <View style={styles.container}>
-      <Text>Enter your flight details</Text>
+      <Text style={styles.h2}>Enter your flight details</Text>
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Number</Text>
         <TextInput
@@ -78,7 +78,7 @@ const SendFormRequest1 = ({ navigation, route }) => {
           label="Save"
           onPress={handleAdd}
         >
-          <Text>Save</Text>
+          <Text style={styles.textSaveButton}>Save</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -86,7 +86,7 @@ const SendFormRequest1 = ({ navigation, route }) => {
           label="Next"
           onPress={gotoSendFormRequest2}
         >
-          <Text>Next</Text>
+          <Text style={styles.textNextButton}>Next</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -97,9 +97,17 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
+    backgroundColor: "white",
+  },
+  h2: {
+    paddingVertical: 15,
+    marginTop: 10,
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#24325B",
   },
   itemLabel: {
-    color: "grey",
+    color: "#24325B",
     fontSize: 16,
     marginBottom: 5,
     padding: 10,
@@ -108,10 +116,9 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 10,
     fontSize: 16,
-    backgroundColor: "white",
+    color: "white",
+    backgroundColor: "#DFEDF2",
     borderRadius: 7,
-    borderWidth: 1,
-    borderColor: "lightgray",
   },
   buttonContainer: {
     flexDirection: "row",
@@ -124,23 +131,31 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     minHeight: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 7,
-    borderColor: "grey",
+    borderColor: "#24325B",
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
+  },
+  textSaveButton: {
+    color: "#24325B",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   nextButton: {
     flex: 1,
     flexDirection: "row",
     minHeight: 50,
-    borderWidth: 1,
     borderRadius: 7,
-    borderColor: "grey",
-    backgroundColor: "white",
+    backgroundColor: "#24325B",
     alignItems: "center",
     justifyContent: "center",
+  },
+  textNextButton: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 

@@ -1,43 +1,98 @@
-import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Pressable,
-  TouchableOpacity,
-} from "react-native";
-import initialFlights from "../../data/flights.js";
-import ScreenView from "../layout/ScreenView";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import MapView, { Marker, Callout, Circle } from "react-native-maps";
+import * as Location from "expo-location";
 
-const DepartureAssistanceScreen = ({ navigation }) => {
+const DepartureAssistanceScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
+  const flight = route.params.flight;
   // State ------------------------------------
-  const [flights, setFlights] = useState(initialFlights);
+
+  const [pin, setPin] = useState({
+    latitude: 51.47002,
+    longitude: -0.454295,
+  });
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location);
+
+      setPin({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
+    })();
+  }, []);
   // Handlers ---------------------------------
-  const handleSelect = () => alert("Item Selected");
 
   // View -------------------------------------
   return (
-    <ScreenView>
-      <ScrollView style={styles.container}>
-        {flights.map((flight) => {
-          return (
-            <Pressable key={flight.FlightID} onPress={handleSelect}>
-              <View style={styles.item}>
-                <Text style={styles.text}>Departure Assistance</Text>
-                <Text style={styles.text}>Status: Confirmed</Text>
+    <View style={styles.container}>
+      <View key={flight.FlightID} style={styles.item}>
+        <Text style={styles.text}>Departure Assistance</Text>
+        <Text style={styles.text}>Status: Confirmed</Text>
+        <Text style={styles.text}>Louis will assist you on your departure</Text>
+      </View>
 
-                <Text style={styles.text}>
-                  Louis will assist you on your departure
-                </Text>
-              </View>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
-    </ScreenView>
+      <View style={styles.item}>
+        <Text style={styles.text}>Defaul pick-up point</Text>
+        <Text style={styles.text}>Special Assistance Area Point</Text>
+        <Text style={styles.text}>
+          It is located in the departures hall opposites the check-in desks{" "}
+        </Text>
+        <MapView
+          style={styles.map}
+          //initialRegion={pin}
+          region={{
+            latitude: pin.latitude,
+            longitude: pin.longitude,
+            latitudeDelta: 0.001,
+            longitudeDelta: 0.001,
+          }}
+          showsUserLocation={true}
+        >
+          <Marker
+            coordinate={pin}
+            title="Test Position Title"
+            description="Test Description"
+            pinColor="red"
+            draggable={true}
+            onDragStart={(e) => {
+              console.log("Drag Start", e.nativeEvent.coordinate);
+            }}
+            onDragEnd={(e) => {
+              console.log("Drag End", e.nativeEvent.coordinate);
+
+              setPin({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            }}
+          >
+            <Callout>
+              <Text>Area A Point</Text>
+            </Callout>
+          </Marker>
+
+          <Circle center={pin} radius={100} />
+        </MapView>
+
+        <TouchableOpacity
+          style={styles.pickUpButton}
+          label="Pick Up Point"
+          //onPress={() => gotoDepartureAssistanceScreen(flight)}
+        >
+          <Text style={styles.textPickUpButton}>Select pick-up point</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -45,13 +100,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff",
-  },
-  clouds: {
-    height: 50,
-    width: 450,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#DFEDF2",
   },
   h1: {
     alignItems: "center",
@@ -72,7 +121,7 @@ const styles = StyleSheet.create({
   item: {
     marginVertical: 20,
     borderRadius: 10,
-    backgroundColor: "#DFEDF2",
+    backgroundColor: "white",
     padding: 20,
     flexDirection: "column",
     justifyContent: "space-between",
@@ -82,42 +131,31 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingBottom: 8,
   },
-  scheduleButton: {
-    flex: 1,
+  map: {
+    borderRadius: 5,
+    width: "100%",
+    height: "55%",
+  },
+  pickUpButton: {
     flexDirection: "row",
-    minHeight: 50,
-    width: 300,
+    height: 50,
+    width: 360,
     borderRadius: 10,
     borderTopWidth: 2,
     borderLeftWidth: 2,
     borderRightWidth: 2,
     borderBottomWidth: 4,
     borderColor: "#57607C",
-    backgroundColor: "white",
+    backgroundColor: "#DFEDF2",
     alignItems: "center",
     justifyContent: "center",
   },
-  textScheduleButton: {
+  textPickUpButton: {
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
     color: "#24325B",
-  },
-  startButton: {
-    flex: 1,
-    flexDirection: "row",
-    minHeight: 50,
-    borderRadius: 10,
-    backgroundColor: "#24325B",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  textButton: {
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "white",
+    paddingVertical: 8,
   },
 });
 

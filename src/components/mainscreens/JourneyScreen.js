@@ -8,16 +8,27 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { Button, ButtonTray } from "../UI/Button.js";
-import TrackJourneyScreen from "../screens/TrackJourneyScreen.js";
 import initialFlights from "../../data/flights.js";
 import ScreenView from "../layout/ScreenView";
+import { parseISO, isAfter } from "date-fns";
 
 const JourneyScreen = ({ navigation }) => {
   // Initialisations --------------------------
   // State ------------------------------------
   const [flights, setFlights] = useState(initialFlights);
+  const [activeTab, setActiveTab] = useState("Upcoming");
   // Handlers ---------------------------------
+  const isFlightUpcoming = (flightDeparture) => {
+    const departureDate = parseISO(flightDeparture);
+    return isAfter(departureDate, new Date());
+  };
+
+  const filteredFlights = flights.filter((flight) =>
+    activeTab === "Upcoming"
+      ? isFlightUpcoming(flight.FlightDeparture)
+      : !isFlightUpcoming(flight.FlightDeparture)
+  );
+
   const handleSelect = () => alert("Item Selected");
 
   const handleAdd = (flight) => setFlights([...flights, flight]);
@@ -26,8 +37,8 @@ const JourneyScreen = ({ navigation }) => {
     setFlights([...flights, flight]);
   };
 
-  const gotoScheduleJourneyScreen = () =>
-    navigation.navigate("ScheduleJourneyScreen");
+  const gotoScheduleJourneyScreen = (flight) =>
+    navigation.navigate("ScheduleJourneyScreen", { flight });
   // View -------------------------------------
   return (
     <ScreenView>
@@ -35,12 +46,30 @@ const JourneyScreen = ({ navigation }) => {
         source={require("../../../assets/clouds.png")}
         style={styles.clouds}
       />
+      <Text style={styles.h1}>Journeys</Text>
+      <View style={styles.segmentedControlContainer}>
+        <TouchableOpacity
+          style={[
+            styles.segmentButton,
+            activeTab === "Upcoming" && styles.activeSegment,
+          ]}
+          onPress={() => setActiveTab("Upcoming")}
+        >
+          <Text style={styles.segmentButtonText}>Upcoming</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.segmentButton,
+            activeTab === "Archive" && styles.activeSegment,
+          ]}
+          onPress={() => setActiveTab("Archive")}
+        >
+          <Text style={styles.segmentButtonText}>Archive</Text>
+        </TouchableOpacity>
+      </View>
 
       <ScrollView style={styles.container}>
-        <Text style={styles.h1}>Journeys</Text>
-
-        <Text style={styles.h2}>Upcomings</Text>
-        {flights.map((flight) => {
+        {filteredFlights.map((flight) => {
           return (
             <Pressable key={flight.FlightID} onPress={handleSelect}>
               <View style={styles.item}>
@@ -52,7 +81,7 @@ const JourneyScreen = ({ navigation }) => {
                 <TouchableOpacity
                   style={styles.scheduleButton}
                   label="Schedule Journey"
-                  onPress={gotoScheduleJourneyScreen}
+                  onPress={() => gotoScheduleJourneyScreen(flight)}
                 >
                   <Text style={styles.textScheduleButton}>
                     Journey schedule
@@ -78,6 +107,26 @@ const styles = StyleSheet.create({
     width: 450,
     alignItems: "center",
     justifyContent: "center",
+  },
+  segmentedControlContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  segmentButton: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#24325B",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  activeSegment: {
+    backgroundColor: "#24325B",
+  },
+  segmentButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
   },
   h1: {
     alignItems: "center",
