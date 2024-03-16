@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ScreenView from "../layout/ScreenView";
+import { format, parseISO } from "date-fns";
 
 const ViewRequestScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
@@ -26,12 +27,18 @@ const ViewRequestScreen = ({ navigation, route }) => {
           <View style={styles.item}>
             <View style={styles.textContainer}>
               <Text style={styles.textRequestH1}>
-                Request for the {flight.FlightDeparture}
+                Request for the {format(parseISO(flight.FlightDeparture), "PP")}
               </Text>
               <Text style={styles.textRequestH2}>
                 Flight Number: {flight.FlightNumber}
               </Text>
               <Text style={styles.textRequestH2}>Status: Confirmed</Text>
+              <Text style={styles.textRequestH2}>
+                Type of Passenger: {flight.selectedTypeAssist}
+              </Text>
+              <Text style={styles.textRequestH2}>
+                Additional Info: {flight.additionalInfo}
+              </Text>
             </View>
           </View>
         </Pressable>

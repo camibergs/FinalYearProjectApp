@@ -1,16 +1,19 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { useFlightContext } from "../../context/FlightContext";
+import { format, parseISO } from "date-fns";
 
-const SendFormRequest3 = ({ navigation }) => {
+const SendFormRequest3 = ({ navigation, route }) => {
   // Initialisations ------------------
+  const { addFlight } = useFlightContext();
+  const { fullDetails } = route.params;
   // State ----------------------------
   // Handlers -------------------------
+  const handleSubmitRequest = () => {
+    addFlight(fullDetails);
+    navigation.navigate("HomeScreen");
+    console.log(fullDetails);
+  };
 
   // View -----------------------------
   return (
@@ -19,35 +22,36 @@ const SendFormRequest3 = ({ navigation }) => {
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Number</Text>
+        <Text>{fullDetails?.FlightNumber}</Text>
       </View>
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Airline Reference Number</Text>
+        <Text>{fullDetails?.AirlineRefNumber}</Text>
       </View>
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Departure Date</Text>
+        <Text>{fullDetails?.FlightDeparture}</Text>
       </View>
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Select type of passenger</Text>
+        <Text>{fullDetails?.selectedTypeAssist}</Text>
       </View>
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>If other, please specify:</Text>
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>Please select one:</Text>
+        <Text>{fullDetails?.additionalInfo}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.nextButton}
-          label="Next"
-          //onPress={gotoSendFormRequest3}
+          label="SubmitRequest"
+          onPress={handleSubmitRequest}
         >
-          <Text>Send request</Text>
+          <Text>Submit request</Text>
         </TouchableOpacity>
       </View>
     </View>
