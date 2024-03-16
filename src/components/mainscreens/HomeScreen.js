@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -11,14 +11,14 @@ import {
 import { Button, ButtonTray } from "../UI/Button";
 import Icons from "../UI/Icons";
 import ScreenView from "../layout/ScreenView";
-import initialFlights from "../../data/flights.js";
+import { useFlightContext } from "../../context/FlightContext.js";
+import { format, parseISO } from "date-fns";
 
 const HomeScreen = ({ navigation }) => {
   // Initialisations --------------------------
-  console.log(navigation);
+  const { flights } = useFlightContext();
 
   // State ------------------------------------
-  const [flights, setFlights] = useState(initialFlights);
 
   // Handlers ---------------------------------
   const gotoSendFormRequest1 = () =>
@@ -27,11 +27,10 @@ const HomeScreen = ({ navigation }) => {
   const gotoViewRequestScreen = (flight) =>
     navigation.navigate("ViewRequestScreen", { flight });
 
-  const handleSelect = () => alert("Item Selected");
-
   const onAdd = (flight) => {
     setFlights([...flights, flight]);
   };
+
   // View -------------------------------------
   return (
     <ScreenView>
@@ -41,7 +40,6 @@ const HomeScreen = ({ navigation }) => {
       />
       <ScrollView style={styles.container}>
         <Text style={styles.h1}>Welcome to Glide</Text>
-
         <Text style={styles.h2}>Request Special Assistance</Text>
 
         <ButtonTray>
@@ -93,7 +91,8 @@ const HomeScreen = ({ navigation }) => {
                 <View style={styles.item}>
                   <View style={styles.textContainer}>
                     <Text style={styles.textRequestH1}>
-                      Request for the {flight.FlightDeparture}
+                      Request for the{" "}
+                      {format(parseISO(flight.FlightDeparture), "PP")}
                     </Text>
                     <Text style={styles.textRequestH2}>
                       Flight Number: {flight.FlightNumber}
@@ -163,11 +162,11 @@ const styles = StyleSheet.create({
     height: 150,
     width: 122,
     borderRadius: 15,
-    borderColor: "#56A0BB",
+    borderColor: "#515E86",
     borderTopWidth: 2,
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    borderBottomWidth: 4,
+    borderBottomWidth: 5,
     backgroundColor: "#DFEDF2",
     alignItems: "center",
     padding: 10,
@@ -188,7 +187,8 @@ const styles = StyleSheet.create({
   },
   item: {
     borderRadius: 15,
-    borderColor: "#56A0BB",
+    borderColor: "#515E86",
+    borderWidth: 2,
     backgroundColor: "#DFEDF2",
     marginBottom: 20,
     padding: 20,

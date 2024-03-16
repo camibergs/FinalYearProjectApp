@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
+import { add } from "date-fns";
 
 const typeAssist = [
   { label: "WCHR (Wheel Chair Ramp)", value: "WCHR" },
@@ -19,17 +20,28 @@ const typeAssist = [
   { label: "DPNA", value: "dpna" },
 ];
 
-const SendFormRequest2 = ({ navigation }) => {
+const SendFormRequest2 = ({ navigation, route }) => {
   // Initialisations ------------------
 
   // State ----------------------------
   const [selectedTypeAssist, setSelectedTypeAssist] = useState(null);
+  const [additionalInfo, setAdditionalInfo] = useState("");
   // Handlers -------------------------
 
   const selectType = (value) => {
     setSelectedTypeAssist(value);
   };
-  const gotoSendFormRequest3 = () => navigation.navigate("SendFormRequest3");
+
+  const gotoSendFormRequest3 = () => {
+    const { flightDetails } = route.params;
+
+    const fullDetails = {
+      ...flightDetails,
+      selectedTypeAssist: selectedTypeAssist,
+      additionalInfo: additionalInfo,
+    };
+    navigation.navigate("SendFormRequest3", { fullDetails });
+  };
   // View -----------------------------
   return (
     <ScrollView style={styles.container}>
@@ -58,9 +70,11 @@ const SendFormRequest2 = ({ navigation }) => {
           Additional information you'd like to provide:
         </Text>
         <TextInput
-          //value={}
+          value={additionalInfo}
+          onChangeText={setAdditionalInfo}
           placeholder="Type here"
           style={styles.itemTextInput}
+          multiline
         />
       </View>
 

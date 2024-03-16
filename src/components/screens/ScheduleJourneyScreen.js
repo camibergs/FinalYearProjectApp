@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ScreenView from "../layout/ScreenView";
+import { format, parseISO } from "date-fns";
 
 const ScheduleJourneyScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
@@ -33,7 +34,9 @@ const ScheduleJourneyScreen = ({ navigation, route }) => {
                 {"Departure Assistance \n Set pick-up point"}
               </Text>
             </TouchableOpacity>
-            <Text style={styles.text}>{flight.FlightDeparture}</Text>
+            <Text style={styles.text}>
+              {format(parseISO(flight.FlightDeparture), "PP")}
+            </Text>
             <Text style={styles.text}>
               Airline reference: {flight.AirlineRefNumber}
             </Text>

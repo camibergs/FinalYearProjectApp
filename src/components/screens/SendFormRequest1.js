@@ -1,4 +1,5 @@
 import {
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -6,34 +7,70 @@ import {
   View,
 } from "react-native";
 import { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { format, parseISO } from "date-fns";
+import { useFlightContext } from "../../context/FlightContext";
 
 const defaultFlightForm = {
   FlightID: null,
   FlightNumber: null,
   AirlineRefNumber: null,
   FlightDeparture: null,
+  FormattedFlightDeparture: null,
 };
 
-const SendFormRequest1 = ({ navigation, route }) => {
+const SendFormRequest1 = ({ navigation }) => {
   // Initialisations --------------------------
-  const { onAdd } = route.params;
-  defaultFlightForm.FlightID = Math.floor(100000 + Math.random() * 900000);
+  const { addFlight } = useFlightContext();
 
   // State ------------------------------------
   const [flights, setFlights] = useState(defaultFlightForm);
+  const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
 
   // Handlers ---------------------------------
   const handleCancel = () => navigation.goBack();
 
+  const onChangeDate = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+    handleChange("FlightDeparture", currentDate.toISOString());
+  };
+
+  const showDatePicker = () => {
+    setShow(true);
+  };
+
+  const formatDate = (dateString) => {
+    // Check if dateString is in ISO format
+    if (!dateString) return "";
+    return format(parseISO(dateString), "PP");
+  };
+
   const handleAdd = () => {
-    onAdd(flights, setFlights);
+    const newFlight = {
+      ...flights,
+      FlightID: Date.now(),
+      FlightDeparture: flights.FlightDeparture,
+    };
+    addFlight(newFlight);
     navigation.navigate("HomeScreen");
   };
 
   const handleChange = (field, value) =>
     setFlights({ ...flights, [field]: value });
 
-  const gotoSendFormRequest2 = () => navigation.navigate("SendFormRequest2");
+  const gotoSendFormRequest2 = () => {
+    const flightDetails = {
+      FlightNumber: flights.FlightNumber,
+      AirlineRefNumber: flights.AirlineRefNumber,
+      FlightDeparture: flights.FlightDeparture,
+    };
+    navigation.navigate("SendFormRequest2", { flightDetails });
+  };
+  //FlightDeparture: format(flights.FlightDeparture, "PP"),
+
   // View -------------------------------------
   return (
     <View style={styles.container}>
@@ -60,12 +97,18 @@ const SendFormRequest1 = ({ navigation, route }) => {
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Departure Date</Text>
-        <TextInput
-          value={flights.FlightDeparture}
-          placeholder="Select Date"
-          onChangeText={(value) => handleChange("FlightDeparture", value)}
-          style={styles.itemTextInput}
-        />
+        <TouchableOpacity onPress={showDatePicker} style={styles.itemTextInput}>
+          <Text style={{ color: "#000" }}>{format(date, "PP")}</Text>
+        </TouchableOpacity>
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={"date"}
+            display={Platform.OS === "ios" ? "spinner" : "default"}
+            onChange={onChangeDate}
+          />
+        )}
       </View>
 
       <Text>

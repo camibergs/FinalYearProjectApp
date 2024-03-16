@@ -8,26 +8,33 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import initialFlights from "../../data/flights.js";
 import ScreenView from "../layout/ScreenView";
 import { parseISO, isAfter } from "date-fns";
+import { useFlightContext } from "../../context/FlightContext.js";
+import { startOfDay } from "date-fns";
+import { format } from "date-fns";
 
 const JourneyScreen = ({ navigation }) => {
   // Initialisations --------------------------
+
   // State ------------------------------------
-  const [flights, setFlights] = useState(initialFlights);
+  const { flights } = useFlightContext();
   const [activeTab, setActiveTab] = useState("Upcoming");
+
   // Handlers ---------------------------------
   const isFlightUpcoming = (flightDeparture) => {
-    const departureDate = parseISO(flightDeparture);
-    return isAfter(departureDate, new Date());
+    const departureDate = startOfDay(parseISO(flightDeparture));
+    const currentDate = startOfDay(new Date());
+    return isAfter(departureDate, currentDate);
   };
 
-  const filteredFlights = flights.filter((flight) =>
-    activeTab === "Upcoming"
+  const filteredFlights = flights.filter((flight) => {
+    console.log("Flight Departure:", flight.FlightDeparture);
+    console.log("Is upcoming:", isFlightUpcoming(flight.FlightDeparture));
+    return activeTab === "Upcoming"
       ? isFlightUpcoming(flight.FlightDeparture)
-      : !isFlightUpcoming(flight.FlightDeparture)
-  );
+      : !isFlightUpcoming(flight.FlightDeparture);
+  });
 
   const handleSelect = () => alert("Item Selected");
 
@@ -73,7 +80,9 @@ const JourneyScreen = ({ navigation }) => {
           return (
             <Pressable key={flight.FlightID} onPress={handleSelect}>
               <View style={styles.item}>
-                <Text style={styles.text}>{flight.FlightDeparture}</Text>
+                <Text style={styles.text}>
+                  {format(parseISO(flight.FlightDeparture), "PP")}
+                </Text>
                 <Text style={styles.text}>
                   {flight.FlightNumber} {flight.AirlineRefNumber}{" "}
                 </Text>

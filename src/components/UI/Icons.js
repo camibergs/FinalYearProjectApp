@@ -18,6 +18,10 @@ const Call = () => (
   <Ionicons name="call" size={40} color="#24325B" marginTop={20} />
 );
 
+const Mail = ({ color }) => (
+  <MaterialIcons name="email" size={26} color="#515E86" />
+);
+
 //Navigation Bar Icons
 const Home = ({ color }) => <FontAwesome name="home" size={30} color={color} />;
 const Plane = ({ color }) => (
@@ -36,7 +40,7 @@ const Delete = () => <MaterialIcons name="delete" size={16} />;
 const Edit = () => <MaterialIcons name="edit" size={16} />;
 
 const RightArrow = () => (
-  <AntDesign name="rightcircle" size={24} color="#24325B" />
+  <AntDesign name="rightcircle" size={24} color="#515E86" />
 );
 
 // Compose
@@ -49,6 +53,7 @@ Icons.Edit = Edit;
 Icons.Form = Form;
 Icons.Home = Home;
 Icons.LiveChat = LiveChat;
+Icons.Mail = Mail;
 Icons.Plane = Plane;
 Icons.RightArrow = RightArrow;
 
