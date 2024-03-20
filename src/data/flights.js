@@ -13,11 +13,4 @@ export const initialFlights = [
     FlightDeparture: "2024-02-02",
     FormattedFlightDeparture: "Feb 2, 2024",
   },
-  {
-    FlightID: 2,
-    FlightNumber: "BA 1234",
-    AirlineRefNumber: "987654",
-    FlightDeparture: "2024-05-03",
-    FormattedFlightDeparture: "May 3, 2024",
-  },
 ];

@@ -11,6 +11,7 @@ import SendFormRequest2 from "./src/components/screens/SendFormRequest2";
 import SendFormRequest3 from "./src/components/screens/SendFormRequest3";
 import ViewRequestScreen from "./src/components/screens/ViewRequestScreen";
 import { FlightProvider } from "./src/context/FlightContext";
+import ConfirmationRequest from "./src/components/screens/ConfirmationRequest";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,17 +33,35 @@ export default function App() {
           <Stack.Screen
             name="SendFormRequest1"
             component={SendFormRequest1}
-            options={{ title: "Step 1/3" }}
+            options={{
+              title: "Step 1/3",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
           <Stack.Screen
             name="SendFormRequest2"
             component={SendFormRequest2}
-            options={{ title: "Step 2/3" }}
+            options={{
+              title: "Step 2/3",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
           <Stack.Screen
             name="SendFormRequest3"
             component={SendFormRequest3}
-            options={{ title: "Step 3/3 - Confirmation" }}
+            options={{
+              title: "Step 3/3 - Confirmation",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
 
           <Stack.Screen
@@ -69,6 +88,17 @@ export default function App() {
             name="ViewRequestScreen"
             component={ViewRequestScreen}
             options={{ title: "View request" }}
+          />
+          <Stack.Screen
+            name="ConfirmationRequest"
+            component={ConfirmationRequest}
+            options={{
+              title: "Confirmation request",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

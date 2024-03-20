@@ -5,44 +5,53 @@ import { format, parseISO } from "date-fns";
 
 const SendFormRequest3 = ({ navigation, route }) => {
   // Initialisations ------------------
-  const { addFlight } = useFlightContext();
   const { fullDetails } = route.params;
   // State ----------------------------
   // Handlers -------------------------
   const handleSubmitRequest = () => {
-    addFlight(fullDetails);
-    navigation.navigate("HomeScreen");
+    navigation.navigate("ConfirmationRequest", { fullDetails: fullDetails });
     console.log(fullDetails);
   };
 
   // View -----------------------------
   return (
     <View style={styles.container}>
-      <Text>Please revise your answer and confirm</Text>
+      <Text>Review your Request</Text>
+
+      <Text>Your flight booking</Text>
 
       <View style={styles.item}>
-        <Text style={styles.itemLabel}>Flight Number</Text>
-        <Text>{fullDetails?.FlightNumber}</Text>
+        <Text style={styles.itemLabel}>
+          Flight Number: {fullDetails?.FlightNumber}
+        </Text>
       </View>
 
       <View style={styles.item}>
-        <Text style={styles.itemLabel}>Airline Reference Number</Text>
-        <Text>{fullDetails?.AirlineRefNumber}</Text>
+        <Text style={styles.itemLabel}>
+          Airline Reference Number: {fullDetails?.AirlineRefNumber}
+        </Text>
       </View>
 
       <View style={styles.item}>
-        <Text style={styles.itemLabel}>Flight Departure Date</Text>
-        <Text>{format(parseISO(fullDetails?.FlightDeparture), "PP")}</Text>
+        <Text style={styles.itemLabel}>
+          Flight Departure Date:{" "}
+          {format(parseISO(fullDetails?.FlightDeparture), "PP")}
+        </Text>
+      </View>
+
+      <Text>Your needs</Text>
+
+      <View style={styles.item}>
+        <Text style={styles.itemLabel}>
+          Type of assistance: {fullDetails?.selectedTypeAssist}
+        </Text>
+        <Text></Text>
       </View>
 
       <View style={styles.item}>
-        <Text style={styles.itemLabel}>Select type of passenger</Text>
-        <Text>{fullDetails?.selectedTypeAssist}</Text>
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.itemLabel}>If other, please specify:</Text>
-        <Text>{fullDetails?.additionalInfo}</Text>
+        <Text style={styles.itemLabel}>
+          Additional information: {fullDetails?.additionalInfo}
+        </Text>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -64,9 +73,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
+    backgroundColor: "white",
   },
   itemLabel: {
-    color: "grey",
+    color: "black",
     fontSize: 16,
     marginBottom: 5,
     padding: 10,

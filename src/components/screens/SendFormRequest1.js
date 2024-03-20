@@ -98,7 +98,7 @@ const SendFormRequest1 = ({ navigation }) => {
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Departure Date</Text>
         <TouchableOpacity onPress={showDatePicker} style={styles.itemTextInput}>
-          <Text style={{ color: "#000" }}>{format(date, "PP")}</Text>
+          <Text style={styles.dateInputText}>{format(date, "PP")}</Text>
         </TouchableOpacity>
         {show && (
           <DateTimePicker
@@ -159,9 +159,17 @@ const styles = StyleSheet.create({
     height: 50,
     paddingLeft: 10,
     fontSize: 16,
-    color: "white",
+    color: "black",
     backgroundColor: "#DFEDF2",
     borderRadius: 7,
+  },
+  dateInputText: {
+    //padding: 10,
+    margin: 10,
+    alignItems: "flex-start",
+    fontSize: 16,
+    color: "black",
+    backgroundColor: "#DFEDF2",
   },
   buttonContainer: {
     flexDirection: "row",

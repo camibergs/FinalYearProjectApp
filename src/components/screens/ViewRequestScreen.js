@@ -32,7 +32,7 @@ const ViewRequestScreen = ({ navigation, route }) => {
               <Text style={styles.textRequestH2}>
                 Flight Number: {flight.FlightNumber}
               </Text>
-              <Text style={styles.textRequestH2}>Status: Confirmed</Text>
+              <Text style={styles.textRequestH2}>Status: In Progress</Text>
               <Text style={styles.textRequestH2}>
                 Type of Passenger: {flight.selectedTypeAssist}
               </Text>
@@ -60,12 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     backgroundColor: "#fff",
-  },
-  clouds: {
-    height: 50,
-    width: 450,
-    alignItems: "center",
-    justifyContent: "center",
   },
   h1: {
     alignItems: "center",

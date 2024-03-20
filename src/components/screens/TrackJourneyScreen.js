@@ -44,32 +44,7 @@ export default function TrackJourneyScreen() {
           longitudeDelta: 0.01,
         }}
         showsUserLocation={true}
-      >
-        <Marker
-          coordinate={pin}
-          title="Test Position Title"
-          description="Test Description"
-          pinColor="red"
-          draggable={true}
-          onDragStart={(e) => {
-            console.log("Drag Start", e.nativeEvent.coordinate);
-          }}
-          onDragEnd={(e) => {
-            console.log("Drag End", e.nativeEvent.coordinate);
-
-            setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
-            });
-          }}
-        >
-          <Callout>
-            <Text>This is a Callout</Text>
-          </Callout>
-        </Marker>
-
-        <Circle center={pin} radius={100} />
-      </MapView>
+      ></MapView>
 
       <View>
         <TouchableOpacity

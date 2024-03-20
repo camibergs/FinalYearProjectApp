@@ -23,7 +23,7 @@ const Mail = ({ color }) => (
 );
 
 //Navigation Bar Icons
-const Home = ({ color }) => <FontAwesome name="home" size={30} color={color} />;
+const Home = ({ color }) => <Entypo name="home" size={30} color={color} />;
 const Plane = ({ color }) => (
   <FontAwesome name="plane" size={30} color={color} />
 );
