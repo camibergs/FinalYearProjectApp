@@ -12,8 +12,21 @@ export const FlightProvider = ({ children }) => {
   const [flights, setFlights] = useState(initialFlights);
 
   // Handlers -------------------------
-  const addFlight = (flightDetails) => {
-    setFlights((currentFlights) => [...currentFlights, flightDetails]);
+  const addFlight = (newFlightDetails) => {
+    setFlights((currentFlights) => {
+      const lastFlightID =
+        currentFlights.length > 0
+          ? Math.max(...currentFlights.map((flight) => flight.FlightID))
+          : -1;
+      const nextFlightID = lastFlightID + 1;
+
+      const flightToAdd = {
+        ...newFlightDetails,
+        FlightID: nextFlightID,
+      };
+
+      return [...currentFlights, flightToAdd];
+    });
   };
 
   return (

@@ -21,8 +21,8 @@ const HomeScreen = ({ navigation }) => {
   // State ------------------------------------
 
   // Handlers ---------------------------------
-  const gotoSendFormRequest1 = () =>
-    navigation.navigate("SendFormRequest1", { onAdd: onAdd });
+  const handleSelect = () => alert("This service is currently unavailable.");
+  const gotoSendFormRequest1 = () => navigation.navigate("SendFormRequest1");
 
   const gotoViewRequestScreen = (flight) =>
     navigation.navigate("ViewRequestScreen", { flight });
@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.buttonRequests}
-              //onClick={gotoLiveChatScreen}
+              onPress={handleSelect}
             >
               <Image
                 source={require("../../../assets//images/LiveChatImage.png")}
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={styles.buttonRequests}
-              //onClick={gotoCallScreen}
+              onPress={handleSelect}
             >
               <Image
                 source={require("../../../assets/images/CallRequestImage.png")}

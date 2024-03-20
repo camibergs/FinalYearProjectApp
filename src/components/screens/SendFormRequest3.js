@@ -32,7 +32,7 @@ const SendFormRequest3 = ({ navigation, route }) => {
 
       <View style={styles.item}>
         <Text style={styles.itemLabel}>Flight Departure Date</Text>
-        <Text>{fullDetails?.FlightDeparture}</Text>
+        <Text>{format(parseISO(fullDetails?.FlightDeparture), "PP")}</Text>
       </View>
 
       <View style={styles.item}>

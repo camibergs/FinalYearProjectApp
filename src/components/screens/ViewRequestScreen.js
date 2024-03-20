@@ -23,7 +23,7 @@ const ViewRequestScreen = ({ navigation, route }) => {
   return (
     <ScreenView>
       <ScrollView style={styles.container}>
-        <Pressable key={flight.FlightID} onPress={handleSelect}>
+        <Pressable key={flight.FlightID}>
           <View style={styles.item}>
             <View style={styles.textContainer}>
               <Text style={styles.textRequestH1}>
