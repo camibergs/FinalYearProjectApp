@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { useFlightContext } from "../../context/FlightContext";
 
 const defaultFlightForm = {
@@ -40,12 +40,6 @@ const SendFormRequest1 = ({ navigation }) => {
 
   const showDatePicker = () => {
     setShow(true);
-  };
-
-  const formatDate = (dateString) => {
-    // Check if dateString is in ISO format
-    if (!dateString) return "";
-    return format(parseISO(dateString), "PP");
   };
 
   const handleAdd = () => {
@@ -110,10 +104,6 @@ const SendFormRequest1 = ({ navigation }) => {
           />
         )}
       </View>
-
-      <Text>
-        {flights.FlightNumber} {flights.AirlineRefNumber}
-      </Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity

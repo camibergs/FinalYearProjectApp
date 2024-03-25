@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import { add } from "date-fns";
 
 const typeAssist = [
   { label: "WCHR (Wheel Chair Ramp)", value: "WCHR" },
@@ -42,6 +41,7 @@ const SendFormRequest2 = ({ navigation, route }) => {
     };
     navigation.navigate("SendFormRequest3", { fullDetails });
   };
+
   // View -----------------------------
   return (
     <ScrollView style={styles.container}>

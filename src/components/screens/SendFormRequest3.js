@@ -16,10 +16,11 @@ const SendFormRequest3 = ({ navigation, route }) => {
   // View -----------------------------
   return (
     <View style={styles.container}>
-      <Text>Review your Request</Text>
+      <Text style={styles.heading}>Review your Request</Text>
 
-      <Text>Your flight booking</Text>
-
+      <View style={styles.subheadingBox}>
+        <Text style={styles.subheading}>Your flight booking</Text>
+      </View>
       <View style={styles.item}>
         <Text style={styles.itemLabel}>
           Flight Number: {fullDetails?.FlightNumber}
@@ -38,9 +39,9 @@ const SendFormRequest3 = ({ navigation, route }) => {
           {format(parseISO(fullDetails?.FlightDeparture), "PP")}
         </Text>
       </View>
-
-      <Text>Your needs</Text>
-
+      <View style={styles.subheadingBox}>
+        <Text style={styles.subheading}>Your needs</Text>
+      </View>
       <View style={styles.item}>
         <Text style={styles.itemLabel}>
           Type of assistance: {fullDetails?.selectedTypeAssist}
@@ -60,7 +61,7 @@ const SendFormRequest3 = ({ navigation, route }) => {
           label="SubmitRequest"
           onPress={handleSubmitRequest}
         >
-          <Text>Submit request</Text>
+          <Text style={styles.nextButtonText}> Submit request</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -75,11 +76,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
+  heading: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#24325B",
+  },
+  subheading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    padding: 10,
+  },
+  subheadingBox: {
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: "#56A0BB",
+  },
+  item: {
+    backgroundColor: "#F0F4F8",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 2, // for Android
+  },
   itemLabel: {
     color: "black",
     fontSize: 16,
-    marginBottom: 5,
-    padding: 10,
+    lineHeight: 24,
   },
   itemTextInput: {
     height: 50,
@@ -91,11 +119,7 @@ const styles = StyleSheet.create({
     borderColor: "lightgray",
   },
   buttonContainer: {
-    flexDirection: "row",
     marginTop: 20,
-    gap: 50,
-    justifyContent: "center",
-    alignItems: "center",
   },
   cancelButton: {
     flex: 1,
@@ -109,14 +133,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   nextButton: {
-    flex: 1,
-    flexDirection: "row",
-    minHeight: 50,
-    borderWidth: 1,
-    borderRadius: 7,
-    borderColor: "grey",
-    backgroundColor: "white",
+    backgroundColor: "#24325B",
+    borderRadius: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
     alignItems: "center",
     justifyContent: "center",
+  },
+  nextButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
   },
 });

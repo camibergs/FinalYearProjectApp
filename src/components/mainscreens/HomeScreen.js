@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -8,7 +8,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import { Button, ButtonTray } from "../UI/Button";
+import { ButtonTray } from "../UI/Button";
 import Icons from "../UI/Icons";
 import ScreenView from "../layout/ScreenView";
 import { useFlightContext } from "../../context/FlightContext.js";
@@ -22,14 +22,11 @@ const HomeScreen = ({ navigation }) => {
 
   // Handlers ---------------------------------
   const handleSelect = () => alert("This service is currently unavailable.");
+
   const gotoSendFormRequest1 = () => navigation.navigate("SendFormRequest1");
 
   const gotoViewRequestScreen = (flight) =>
     navigation.navigate("ViewRequestScreen", { flight });
-
-  const onAdd = (flight) => {
-    setFlights([...flights, flight]);
-  };
 
   // View -------------------------------------
   return (

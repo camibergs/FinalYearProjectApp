@@ -12,13 +12,16 @@ import { format, parseISO } from "date-fns";
 const ScheduleJourneyScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
   const flight = route.params.flight;
+
   // State ------------------------------------
+
   // Handlers ---------------------------------
   const gotoTrackJourneyScreen = () =>
     navigation.navigate("TrackJourneyScreen");
 
   const gotoDepartureAssistanceScreen = (flight) =>
     navigation.navigate("DepartureAssistanceScreen", { flight });
+
   // View -------------------------------------
   return (
     <ScreenView>
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff",
+    backgroundColor: "#DFEDF2",
   },
   clouds: {
     height: 50,

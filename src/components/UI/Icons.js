@@ -43,11 +43,16 @@ const RightArrow = () => (
   <AntDesign name="rightcircle" size={24} color="#515E86" />
 );
 
+const Check = ({ color }) => (
+  <FontAwesome name="check-circle" size={50} color={color} />
+);
+
 // Compose
 Icons.Account = Account;
 Icons.Add = Add;
 Icons.Call = Call;
 Icons.CallSupport = CallSupport;
+Icons.Check = Check;
 Icons.Delete = Delete;
 Icons.Edit = Edit;
 Icons.Form = Form;

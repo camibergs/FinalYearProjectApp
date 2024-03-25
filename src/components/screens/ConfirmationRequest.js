@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useFlightContext } from "../../context/FlightContext";
+import Icons from "../UI/Icons";
 
 const ConfirmationRequest = ({ navigation, route }) => {
   // Initialisations ------------------
@@ -21,17 +22,24 @@ const ConfirmationRequest = ({ navigation, route }) => {
         source={require("../../../assets/backgroundCloud.png")}
         style={styles.backgroundImage}
       />
-      <Text style={styles.textConfirmation}>
-        We have successfully sent your request to the airline and airport staff.
-      </Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          label="ViewRequest"
-          onPress={goToHomeScreen}
-        >
-          <Text style={styles.textButton}>View request</Text>
-        </TouchableOpacity>
+      <View style={styles.confirmBox}>
+        <View style={styles.greenTick}>
+          <Icons.Check color={"#5CC533"} />
+        </View>
+        <Text style={styles.textConfirmation}>
+          {
+            "We have successfully sent \n your request to the airline \n and airpor staff."
+          }
+        </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            label="ViewRequest"
+            onPress={goToHomeScreen}
+          >
+            <Text style={styles.textButton}>View request</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -44,6 +52,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 25,
     backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
   backgroundImage: {
     height: "100%",
@@ -51,6 +61,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  confirmBox: {
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 20,
+    paddingHorizontal: 50,
+    marginBottom: 100,
+    borderColor: "#56A0BB",
+    backgroundColor: "#DFEDF2",
+  },
+  greenTick: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
   },
   buttonContainer: {
     flexDirection: "row",

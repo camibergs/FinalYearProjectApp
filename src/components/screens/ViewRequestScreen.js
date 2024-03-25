@@ -12,10 +12,10 @@ import { format, parseISO } from "date-fns";
 const ViewRequestScreen = ({ navigation, route }) => {
   // Initialisations --------------------------
   const flight = route.params.flight;
-  // State ------------------------------------
-  // Handlers ---------------------------------
-  const handleSelect = () => alert("Item Selected");
 
+  // State ------------------------------------
+
+  // Handlers ---------------------------------
   const gotoScheduleJourneyScreen = (flight) =>
     navigation.navigate("ScheduleJourneyScreen", { flight });
 
@@ -23,25 +23,37 @@ const ViewRequestScreen = ({ navigation, route }) => {
   return (
     <ScreenView>
       <ScrollView style={styles.container}>
-        <Pressable key={flight.FlightID}>
-          <View style={styles.item}>
-            <View style={styles.textContainer}>
-              <Text style={styles.textRequestH1}>
-                Request for the {format(parseISO(flight.FlightDeparture), "PP")}
-              </Text>
-              <Text style={styles.textRequestH2}>
-                Flight Number: {flight.FlightNumber}
-              </Text>
-              <Text style={styles.textRequestH2}>Status: In Progress</Text>
-              <Text style={styles.textRequestH2}>
-                Type of Passenger: {flight.selectedTypeAssist}
-              </Text>
-              <Text style={styles.textRequestH2}>
-                Additional Info: {flight.additionalInfo}
-              </Text>
-            </View>
+        <View style={styles.item}>
+          <View style={styles.subheadingBox}>
+            <Text style={styles.subheading}>Your request details</Text>
           </View>
-        </Pressable>
+
+          <View style={styles.textContainer}>
+            <Text style={styles.textRequestH2}>
+              Request for the {format(parseISO(flight.FlightDeparture), "PP")}
+            </Text>
+            <Text style={styles.textRequestH2}>Status: In Progress</Text>
+            <View style={styles.subheadingBox}>
+              <Text style={styles.subheading}>Your flight booking </Text>
+            </View>
+            <Text style={styles.textRequestH2}>
+              Flight Number: {flight.FlightNumber}
+            </Text>
+            <Text style={styles.textRequestH2}>
+              Booking Reference: {flight.AirlineRefNumber}
+            </Text>
+            <View style={styles.subheadingBox}>
+              <Text style={styles.subheading}>Your needs</Text>
+            </View>
+
+            <Text style={styles.textRequestH2}>
+              Type of Passenger: {flight.selectedTypeAssist}
+            </Text>
+            <Text style={styles.textRequestH2}>
+              Additional Info: {flight.additionalInfo}
+            </Text>
+          </View>
+        </View>
 
         <TouchableOpacity
           style={styles.startButton}
@@ -61,6 +73,22 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#fff",
   },
+  heading: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+    color: "#24325B",
+  },
+  subheading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    padding: 10,
+  },
+  subheadingBox: {
+    borderRadius: 10,
+    backgroundColor: "#56A0BB",
+  },
   h1: {
     alignItems: "center",
     justifyContent: "center",
@@ -70,12 +98,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#24325B",
   },
-  h2: {
-    paddingVertical: 15,
-    marginTop: 10,
-    fontSize: 22,
-    fontWeight: "bold",
+  textRequestH2: {
+    fontSize: 18,
     color: "#24325B",
+    lineHeight: 20,
+    borderBottomWidth: 0.5,
   },
   item: {
     marginVertical: 20,

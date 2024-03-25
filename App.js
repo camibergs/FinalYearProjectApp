@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import NavigationBottom from "./src/components/navigation/NavigationBottom";
 import TrackJourneyScreen from "./src/components/screens/TrackJourneyScreen";
 import ScheduleJourneyScreen from "./src/components/screens/ScheduleJourneyScreen";
@@ -63,7 +63,6 @@ export default function App() {
               headerTintColor: "#fff",
             }}
           />
-
           <Stack.Screen
             name="JourneyScreen"
             component={NavigationBottom}
@@ -77,12 +76,24 @@ export default function App() {
           <Stack.Screen
             name="ScheduleJourneyScreen"
             component={ScheduleJourneyScreen}
-            options={{ title: "Your Journey Schedule" }}
+            options={{
+              title: "Your Journey Schedule",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
           <Stack.Screen
             name="DepartureAssistanceScreen"
             component={DepartureAssistanceScreen}
-            options={{ title: "Departure Assistance" }}
+            options={{
+              title: "Departure Assistance",
+              headerStyle: {
+                backgroundColor: "#56A0BB",
+              },
+              headerTintColor: "#fff",
+            }}
           />
           <Stack.Screen
             name="ViewRequestScreen"
