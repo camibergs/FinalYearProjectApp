@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   subheadingBox: {
-    flex: 1,
     borderRadius: 10,
     backgroundColor: "#56A0BB",
   },
@@ -98,19 +97,14 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
-    elevation: 2, // for Android
   },
   itemLabel: {
     color: "black",
     fontSize: 16,
-    lineHeight: 24,
+    lineHeight: 20,
   },
   itemTextInput: {
-    height: 50,
+    height: 20,
     paddingLeft: 10,
     fontSize: 16,
     backgroundColor: "white",
